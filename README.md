@@ -6,9 +6,9 @@ purposes.
 
 ### Building
 
- $ make build
+    $ make build
 
 
 ### Testing
 
- $ make test
+    $ make test
