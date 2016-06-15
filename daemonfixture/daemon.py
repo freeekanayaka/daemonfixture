@@ -119,6 +119,7 @@ class DaemonFixture(Fixture):
                 self.kill()
 
     def _request_stop(self):
+        """Try to stop the daemon cleanly."""
         self._process.terminate()
         self._process.wait(timeout=self._timeout)
         outstr, errstr = self._process.communicate()
