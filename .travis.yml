@@ -5,3 +5,5 @@ python:
   - 2.7
 install: make build
 script: make test
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
