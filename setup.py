@@ -23,6 +23,8 @@ setup(
     extras_require=dict(
         test=[
             "testtools",
+            "coverage",
+            "codecov",
         ],
     ),
 
