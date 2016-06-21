@@ -5,6 +5,8 @@ VIRTUALENV=virtualenv
 ENV=env
 PIP = $(ENV)/bin/pip
 PYTHON = $(ENV)/bin/python
+COVERAGE = $(ENV)/bin/coverage
+CODECOV = $(ENV)/bin/codecov
 
 
 build:
@@ -13,7 +15,10 @@ build:
 	$(PIP) install -e .[test]
 
 test:
-	$(PYTHON) -m testtools.run discover
+	$(COVERAGE) run -m testtools.run discover
+
+codecov:
+	$(CODECOV)
 
 
 dist:
