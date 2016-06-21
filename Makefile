@@ -18,7 +18,7 @@ test:
 	$(COVERAGE) run -m testtools.run discover
 
 codecov:
-	$(CODECOV)
+	PATH=$(ENV)/bin $(CODECOV)
 
 
 dist:

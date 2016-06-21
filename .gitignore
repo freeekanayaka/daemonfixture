@@ -2,3 +2,4 @@ daemonfixture.egg-info
 dist
 env
 *.pyc
+.coverage
