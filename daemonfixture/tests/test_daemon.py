@@ -1,7 +1,5 @@
-# Copyright 2016 Canonical Ltd.  This software is licensed under the
-# GNU Affero General Public License version 3 (see the file LICENSE).
-
 from testtools.testcase import TestCase
+from testtools.content import text_content
 
 from daemonfixture.daemon import DaemonFixture
 
@@ -24,8 +22,9 @@ class DaemonFixtureTest(TestCase):
         and the cleanup doesn't complete until the is_ready() callable returns
         False.
         """
+        self.addDetail('arbitrary-color-name', text_content("blue"))
         probes = [False, True, True, False]
-        fixture = DaemonFixture(["/bin/cat"], is_ready=probes.pop)
+        fixture = DaemonFixture(["nc", "-l", "9999"], is_ready=probes.pop)
         fixture.setUp()
         self.assertEqual([False, True], probes)
         fixture.cleanUp()

@@ -1,11 +1,10 @@
-# Copyright 2016 Canonical Ltd.  This software is licensed under the
-# GNU Affero General Public License version 3 (see the file LICENSE).
-
 """Fixture for managing test daemon processes."""
 
 import os
 import time
 import signal
+
+import six
 
 from fixtures import (
     Fixture,
@@ -16,9 +15,9 @@ from testtools.content import (
     )
 from testtools.content_type import UTF8_TEXT
 
-try:
+if six.PY2:
     import subprocess32 as subprocess
-except ImportError:
+else:
     import subprocess
 
 
@@ -91,6 +90,11 @@ class DaemonFixture(Fixture):
 
     def _stop(self):
         """Stop the daemon process, possibly killing it."""
+        if not self.is_running():
+            # This means that the process was already terminated during the
+            # test (perhaps calling kill()). We have nothing to do.
+            return
+
         timeout = time.time() + self._timeout
         try:
             self._request_stop()

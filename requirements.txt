@@ -1,0 +1,5 @@
+pbr
+six
+fixtures
+testtools
+subprocess32; python_version == "2.7"

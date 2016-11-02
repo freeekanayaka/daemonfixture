@@ -1,2 +1,6 @@
-# Copyright 2016 Canonical Ltd.  This software is licensed under the
-# GNU Affero General Public License version 3 (see the file LICENSE).
+from pbr.version import VersionInfo
+
+
+_v = VersionInfo("daemonfixture").semantic_version()
+__version__ = _v.release_string()
+version_info = _v.version_tuple()
